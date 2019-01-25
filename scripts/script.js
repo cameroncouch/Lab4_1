@@ -15,12 +15,9 @@ class AddressBook { // Creates a class with name of AddressBook
             console.log(this.contacts[i]); //Every loop iteration logs the array item [i] from the current indice
         }
     }
-    deleteByName(contactName) {
-        for (let i = 0; i < this.contacts.length; i++) {//A for loop that loops through contacts array
-            if(this.contacts[i] === contactName) {
-                this.contacts.splice(contactName);
-            }
-        }
+    deleteByName(name) {
+        const index = this.contacts.indexOf(this.contacts.find(contName => contName.name === name));
+        this.contacts.splice(index, 1);
     }
 }
 class Contact { //A class with the name of Contact
@@ -61,9 +58,8 @@ while (true) { //starts the loop with a true statement (true is truthy)
         rolodex.deleteAt(index);//Invokes deleteAt on rolodex, which splices the array element indicated by the user input 
     }
     else if (choice === "delete by name") {
-        const contactName = prompt("Enter name of contact to delete: ");
-        rolodex.deleteByName(contactName);
-        console.log(contactName);
+        const name = prompt("Enter name of contact to delete: ");
+        rolodex.deleteByName(name);
     }
     else if (choice === "quit") {//Else if the user presses cancel, or types in quit
         console.log("Reload the window if you want to add, delete, or print the address book");//Print this message
